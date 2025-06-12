@@ -20,11 +20,12 @@ public class Accommodation {
 	private Integer categoryId;//宿カテゴリーID
 
 	private enum bathType {
-		ユニットバス, 風呂, シャワールーム
+		//お風呂の種類
+		ユニットバス, 風呂トイレ別, シャワールーム
 	}
 
 	@Enumerated(EnumType.STRING)
-	private bathType bath;//お風呂の種類
+	private bathType bath;
 
 	private String name;//宿泊施設の名前
 
