@@ -22,4 +22,7 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, In
 	List<Accommodation> findByCategoryIdAndBathAndLanguageId(Integer categoryId, BathType bath,
 			Integer languageId);
 
+	//宿泊施設のカテゴリー
+	List<Accommodation> findByCategoryId(Integer categoryId);
+
 }
