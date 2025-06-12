@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.entity.Plan;
 
 public interface PlanRepository extends JpaRepository<Plan, Integer> {
+	//日付範囲検索
+	List<Plan> findByDateBetween(LocalDate startDate, LocalDate endDate);
 
 	List<Plan> findByRoomIdAndPriceAndAccommodationIdAndDateBetween(Integer roomId, Integer price,
 			Integer accommodationId, LocalDate startDate, LocalDate endDate);
