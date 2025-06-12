@@ -8,7 +8,7 @@ import com.example.demo.entity.Accommodation;
 
 public interface AccommodationRepository extends JpaRepository<Accommodation, Integer> {
 
-	//宿泊施設のカテゴリー、対応言語
-	List<Accommodation> findByCategoryIdAndLanguageId(Integer categoryId, Integer languageId);
+	//宿泊施設のカテゴリー
+	List<Accommodation> findByCategoryId(Integer categoryId);
 
 }
