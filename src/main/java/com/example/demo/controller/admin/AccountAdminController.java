@@ -44,18 +44,21 @@ public class AccountAdminController {
 		if (email.length() == 0 || password.length() == 0) {
 			model.addAttribute("errormsg", "メールアドレスとパスワードを入力してください");
 			return "admin/adminLogin";
-		} else if (email == null || email.length() == 0) {
-			model.addAttribute("errormsg", "メールアドレスは必須です");
-		} else if (password == null || password.length() == 0) {
-			model.addAttribute("errormsg", "パスワードは必須です");
 		}
+		//		if (email == null || email.length() == 0) {
+		//			model.addAttribute("errormsg", "メールアドレスは必須です");
+		//			return "admin/adminLogin";
+		//		} else if (password == null || password.length() == 0) {
+		//			model.addAttribute("errormsg", "パスワードは必須です");
+		//			return "admin/adminLogin";
+		//		}
 
 		List<Admin> error = null;
 		error = adminRepository.findByEmailAndPassword(email, password);
 		if (error.size() == 1) {
 			accountAdmin.setName(error.get(0).getName());
 			accountAdmin.setId(error.get(0).getId());
-			return "redirect:/adminHotels";
+			return "admin/adminHotels";
 		} else {
 			model.addAttribute("errormsg", "メールアドレスとパスワードが一致しません");
 			return "admin/adminLogin";
