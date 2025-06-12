@@ -2,6 +2,8 @@ package com.example.demo.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,7 +19,13 @@ public class Accommodation {
 	@Column(name = "category_id")
 	private Integer categoryId;//宿カテゴリーID
 
-	private Enum bath;//お風呂の種類
+	private enum bathType {
+		//お風呂の種類
+		ユニットバス, 風呂トイレ別, シャワールーム
+	}
+
+	@Enumerated(EnumType.STRING)
+	private bathType bath;
 
 	private String name;//宿泊施設の名前
 
@@ -35,7 +43,7 @@ public class Accommodation {
 
 	}
 
-	public Accommodation(Integer categoryId, Enum bath, String name, String tel, String address, Integer languageId,
+	public Accommodation(Integer categoryId, bathType bath, String name, String tel, String address, Integer languageId,
 			String content) {
 		this.categoryId = categoryId;
 		this.bath = bath;
@@ -54,11 +62,11 @@ public class Accommodation {
 		this.categoryId = categoryId;
 	}
 
-	public Enum getBath() {
+	public bathType getBath() {
 		return bath;
 	}
 
-	public void setBath(Enum bath) {
+	public void setBath(bathType bath) {
 		this.bath = bath;
 	}
 
