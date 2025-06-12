@@ -11,4 +11,5 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, In
 	//宿泊施設のカテゴリー、対応言語
 	List<Accommodation> findByCategoryIdAndLanguageId(Integer categoryId, Integer languageId);
 
+	Integer i = 0;
 }
