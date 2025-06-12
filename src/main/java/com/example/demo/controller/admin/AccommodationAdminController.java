@@ -43,4 +43,10 @@ public class AccommodationAdminController {
 
 		return "admin/adminHotels";
 	}
+
+	//宿泊施設の新規登録画面表示
+	@GetMapping("/admin/add")
+	public String create() {
+		return "admin/adminAddHotels";
+	}
 }
