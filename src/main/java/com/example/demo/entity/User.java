@@ -16,6 +16,14 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	private String name;
+	private String tel;
+	private String address;
+	private String password;
+	private Integer gender;
+	private String nickname;
+	private String email;
+	private LocalDate birthday;
 
 	public Integer getId() {
 		return id;
@@ -53,13 +61,20 @@ public class User {
 		return birthday;
 	}
 
-	private String name;
-	private String tel;
-	private String address;
-	private String password;
-	private Integer gender;
-	private String nickname;
-	private String email;
-	private LocalDate birthday;
+	public User() {
+
+	}
+
+	public User(String name, String tel, String address, String password, Integer gender, String nickname, String email,
+			LocalDate birthday) {
+		this.name = name;
+		this.tel = tel;
+		this.address = address;
+		this.password = password;
+		this.gender = gender;
+		this.nickname = nickname;
+		this.email = email;
+		this.birthday = birthday;
+	}
 
 }
