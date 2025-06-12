@@ -19,7 +19,7 @@ public class AccountAdminController {
 	//管理者のログイン画面を表示
 	@GetMapping({ "/admin/login", "/admin/logout" })
 	public String index() {
-
+		session.invalidate();
 		return "admin/adminLogin";
 	}
 }
