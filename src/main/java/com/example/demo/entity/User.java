@@ -61,10 +61,6 @@ public class User {
 		return birthday;
 	}
 
-	public User() {
-
-	}
-
 	public User(String name, String tel, String address, String password, Integer gender, String nickname, String email,
 			LocalDate birthday) {
 		this.name = name;
@@ -75,6 +71,10 @@ public class User {
 		this.nickname = nickname;
 		this.email = email;
 		this.birthday = birthday;
+	}
+
+	public User() {
+
 	}
 
 }
