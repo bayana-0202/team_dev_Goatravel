@@ -18,6 +18,18 @@
 			<th>最安値</th>
 			<th>詳細</th>
 		</tr>
+		<tr th:each="accommodation:${accommodations}">
+			<td th:text="${accommodation.id}"></td>
+			<td>
+				<a th:href="'/accommodation/'+${accommodation.id" th:text="${accommodation.name}"></a>
+			 </td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
 		
 	</table>
 	
