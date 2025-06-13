@@ -42,9 +42,6 @@ public class AccountAdminController {
 			@RequestParam(name = "password", defaultValue = "") String password,
 			Model model) {
 
-		//		String passwordMask = "●".repeat(password.length());
-		//		model.addAttribute("passwordMask", passwordMask);
-
 		//メール、パスワードが空の場合、エラーとする
 		if (email.length() == 0 || password.length() == 0) {
 			model.addAttribute("errormsg", "メールアドレスとパスワードを入力してください");
@@ -63,7 +60,7 @@ public class AccountAdminController {
 		if (error.size() == 1) {
 			accountAdmin.setName(error.get(0).getName());
 			accountAdmin.setId(error.get(0).getId());
-			return "admin/adminHotels";
+			return "redirect:/admin/accommodation";
 		} else {
 			model.addAttribute("errormsg", "メールアドレスとパスワードが一致しません");
 			return "admin/adminLogin";
