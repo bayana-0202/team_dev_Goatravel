@@ -5,7 +5,12 @@
 <title>アカウント新規作成</title>
 </head>
 <body>
-	<header>アカウント新規作成</header>
+	<th:block th:replace="~{header :: header_fragment(
+				title='新規作成'
+				)}"></th:block>
+	
+	
+<!--	<header>アカウント新規作成</header>-->
 	
 	<form action="/signup/confirm" method="post">
 		<ul th:if="${errorList}">

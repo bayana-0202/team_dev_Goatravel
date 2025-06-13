@@ -29,7 +29,7 @@ public class AccountController {
 	@Autowired
 	UserRepository userRepository;
 
-	@GetMapping({ "/login" })
+	@GetMapping({ "/login", "/logout" })
 	public String index(Model model) {
 		session.invalidate();
 		return "login";
