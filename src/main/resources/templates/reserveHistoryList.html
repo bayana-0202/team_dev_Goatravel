@@ -39,7 +39,7 @@
 		<p>予約をキャンセルしますか？</p>
 		<table>
 			<tr>
-				<td><button>戻る</button></td>
+				<td><button id="no-btn">戻る</button></td>
 				<td><button>削除</button></td>
 			</tr>
 		</table>
@@ -48,11 +48,16 @@
 	<script>
 		let btnE1 = document.getElementById("cancel-btn");
 		let popE1 = document.getElementById("check-popup");
+		let btnNo = document.getElementById("no-btn");
 		
 		btnE1.addEventListener("click",function(){
 			console.log("クリック");
 			popE1.style.display ="block";
 		})
+		btnNo.addEventListener("click",function(){
+					console.log("クリック");
+					popE1.style.display ="none";
+				})
 	</script>
 	
 </body>
