@@ -29,7 +29,9 @@
 			</tr>
 			<tr>
 				<th>性別</th>
-				<td th:text="${gender}"></td>
+				<td th:if="${gender==0}"th:text="男"></td>
+				<td th:if="${gender==1}"th:text="女"></td>
+				<td th:if="${gender==2}"th:text="選択しない"></td>
 			</tr>
 			<tr>
 				<th>住所</th>
@@ -41,7 +43,7 @@
 			</tr>
 			<tr>
 				<th>パスワード</th>
-				<td th:text="${password}"></td>
+				<td th:text="${passwordMask}"></td>
 			</tr>
 		</table>
 
