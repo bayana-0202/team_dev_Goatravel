@@ -1,5 +1,6 @@
 package com.example.demo.controller.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.servlet.http.HttpSession;
@@ -94,4 +95,56 @@ public class AccountAdminController {
 		return "admin/adminEditAccount";
 	}
 
+	//管理者情報の更新処理
+	@PostMapping("/admin/{id}/edit")
+	public String update(
+			@PathVariable("id") Integer id,
+			@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "email", defaultValue = "") String email,
+			@RequestParam(name = "tel", defaultValue = "") String tel,
+			@RequestParam(name = "password", defaultValue = "") String password,
+			@RequestParam(name = "password_confirm", defaultValue = "") String password_confirm,
+			Model model) {
+
+		Admin admins = new Admin(id, name, email, tel, password);
+
+		//入力チェック
+		ArrayList<String> errors = new ArrayList<>();
+		if (name.length() == 0) {
+			errors.add("名前を入力してください");
+		}
+		if (email.length() == 0) {
+			errors.add("メールアドレスを入力してください");
+		}
+		if (tel.length() == 0) {
+			errors.add("電話番号を入力してください");
+		}
+		if (password.length() == 0) {
+			errors.add("パスワードを入力してください");
+		} else if (!(password.equals(password_confirm))) {
+			errors.add("パスワードが一致しませんでした");
+		}
+
+		if (errors.size() > 0) {
+			model.addAttribute("errors", errors);
+			model.addAttribute("admin", admins);
+			model.addAttribute("accountAdmin", accountAdmin);
+			return "admin/adminEditAccount";
+		}
+
+		String passwordMask = "●".repeat(password.length());
+		model.addAttribute("passwordMask", passwordMask);
+
+		Admin admin = adminRepository.findById(id).get();
+		admin.setName(name);
+		admin.setTel(tel);
+		admin.setPassword(password);
+
+		model.addAttribute("admin", admin);
+		accountAdmin.setName(name);
+		accountAdmin.setId(id);
+		adminRepository.save(admin);
+		model.addAttribute("accountAdmin", accountAdmin);
+		return "redirect:/admin/accommodation";
+	}
 }

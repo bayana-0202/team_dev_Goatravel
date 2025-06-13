@@ -28,7 +28,8 @@ public class Admin {
 
 	}
 
-	public Admin(String name, String password, String email, String tel) {
+	public Admin(Integer id, String name, String password, String email, String tel) {
+		this.id = id;
 		this.name = name;
 		this.password = password;
 		this.email = email;
