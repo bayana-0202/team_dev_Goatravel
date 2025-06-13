@@ -1,12 +1,15 @@
 package com.example.demo.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,6 +28,17 @@ public class Plan {
 	private Integer accommodationId;//宿泊施設のID
 
 	private LocalDate date;
+
+	@OneToMany(mappedBy = "plan")
+	private List<Reserve> reserves = new ArrayList<>();
+
+	public List<Reserve> getReserves() {
+		return reserves;
+	}
+
+	public void setReserves(List<Reserve> reserves) {
+		this.reserves = reserves;
+	}
 
 	//コンストラクタ
 	public Plan() {
