@@ -34,7 +34,7 @@ public class AccountAdminController {
 	}
 
 	//ログイン処理
-	@PostMapping("/admin/accommodation")
+	@PostMapping("/admin/login")
 	public String login(
 			@RequestParam(name = "email", defaultValue = "") String email,
 			@RequestParam(name = "password", defaultValue = "") String password,
@@ -63,6 +63,16 @@ public class AccountAdminController {
 			model.addAttribute("errormsg", "メールアドレスとパスワードが一致しません");
 			return "admin/adminLogin";
 		}
-
 	}
+
+	//管理者の一覧画面
+	@GetMapping("/admin/account")
+	public String accouunt(Model model) {
+
+		//全管理者の取得
+		List<Admin> adminAccount = adminRepository.findAll();
+		model.addAttribute("acounts", adminAccount);
+		return "admin/adminAccount";
+	}
+
 }
