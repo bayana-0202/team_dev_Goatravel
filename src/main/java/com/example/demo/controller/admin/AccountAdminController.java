@@ -71,8 +71,10 @@ public class AccountAdminController {
 
 		//全管理者の取得
 		List<Admin> adminAccount = adminRepository.findAll();
-		model.addAttribute("acounts", adminAccount);
+		model.addAttribute("accounts", adminAccount);
 		return "admin/adminAccount";
 	}
+
+	//管理者情報の更新画面
 
 }
