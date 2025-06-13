@@ -76,11 +76,15 @@ public class AccountAdminController {
 
 	//管理者の一覧画面
 	@GetMapping("/admin/account")
-	public String accouunt(Model model) {
+	public String accouunt(
+			@RequestParam(name = "authority", defaultValue = "") Integer authority,
+			Model model) {
 
-		//全管理者の取得
-		List<Admin> adminAccount = adminRepository.findAll();
-		model.addAttribute("accounts", adminAccount);
+		if (authority == 0) {
+			//全管理者の取得
+			List<Admin> adminAccount = adminRepository.findAll();
+			model.addAttribute("accounts", adminAccount);
+		}
 
 		model.addAttribute("accountAdmin", accountAdmin);
 		return "admin/adminAccount";
