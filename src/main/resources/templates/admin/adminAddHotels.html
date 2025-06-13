@@ -8,33 +8,34 @@
 
 <body>
 	<h1>ホテル新規作成</h1>
+	<p th:each="error:${errors}" th:text="${error}" style="color: red;"></p>
 	<form action="/admin/check" method="post">
 		<table border="1">
 			<tr>
 				<th>ホテル</th>
-				<td><input type="text" name="name"></td>
+				<td><input type="text" name="name" th:value="${name}"></td>
 			</tr>
 			<tr>
 				<th>カテゴリー</th>
 				<td>
-					<input type="radio" name="categoryId" value="1">ビジネス
-					<input type="radio" name="categoryId" value="2">リゾート
-					<input type="radio" name="categoryId" value="3">旅館
-					<input type="radio" name="categoryId" value="4">その他
+					<input type="radio" name="categoryId" value="1" >ビジネス
+					<input type="radio" name="categoryId" value="2" >リゾート
+					<input type="radio" name="categoryId" value="3" >旅館
+					<input type="radio" name="categoryId" value="4" >その他
 				</td>
 			</tr>
 			<tr>
 				<th>住所</th>
-				<td><input type="text" name="address"></td>
+				<td><input type="text" name="address" th:value="${address}"></td>
 			</tr>
 			<tr>
 				<th>電話番号</th>
-				<td><input type="text" name="tel"></td>
+				<td><input type="text" name="tel" th:value="${tel}"></td>
 			</tr>
 			<tr>
 				<th>対応言語</th>
 				<td>
-					<select name="languageId">
+					<select name="languageId" >
 						<option value="1">日本語</option>
 						<option value="2">日本語、英語</option>
 						<option value="3">日本語、中国語</option>
@@ -45,14 +46,14 @@
 			<tr>
 				<th>風呂</th>
 				<td>
-					<input type="radio" name="bathId" value="1">ユニットバス
-					<input type="radio" name="bathId" value="2">風呂
-					<input type="radio" name="bathId" value="3">大浴場
+					<input type="radio" name="bathId" value="1" >ユニットバス
+					<input type="radio" name="bathId" value="2" >風呂
+					<input type="radio" name="bathId" value="3" >大浴場
 				</td>
 			</tr>
 			<tr>
 				<th>内容</th>
-				<td><input type="text" name="content"></td>
+				<td><input type="text" name="content" th:value="${content}"></td>
 			</tr>
 		</table>
 		<button>作成</button>

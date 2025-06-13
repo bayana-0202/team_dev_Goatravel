@@ -145,6 +145,12 @@ public class AccountAdminController {
 		accountAdmin.setId(id);
 		adminRepository.save(admin);
 		model.addAttribute("accountAdmin", accountAdmin);
-		return "redirect:/admin/account";
+		return "admin/adminEditAccountConfirm";
+	}
+
+	//管理者情報更新確認画面
+	@PostMapping("/admin/confirm")
+	public String confirmView(Model model) {
+		return "redirect:/admin/accommodation";
 	}
 }
