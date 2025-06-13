@@ -13,7 +13,7 @@
 	</ul>
 	<form th:action="@{/admin/{adminId}/edit(adminId=${admin.id})}" method="post">
 		<input type="hidden" name="id" th:value="${admin.id}"> 
-		<tabel border="1">
+		<table>
 			<tr>
 				<th>お名前</th>
 				<td><input type="text" name="name" th:value="${admin.name}"></td>
@@ -38,7 +38,7 @@
 					<input type="password" name="password_confirm">
 				</td>
 			</tr>
-		</tabel>
+		</table>
 		<button>更新する</button>
 	</form>
 </body>
