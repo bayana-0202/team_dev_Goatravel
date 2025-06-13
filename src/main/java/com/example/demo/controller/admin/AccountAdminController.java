@@ -42,6 +42,9 @@ public class AccountAdminController {
 			@RequestParam(name = "password", defaultValue = "") String password,
 			Model model) {
 
+		//		String passwordMask = "●".repeat(password.length());
+		//		model.addAttribute("passwordMask", passwordMask);
+
 		//メール、パスワードが空の場合、エラーとする
 		if (email.length() == 0 || password.length() == 0) {
 			model.addAttribute("errormsg", "メールアドレスとパスワードを入力してください");
@@ -145,6 +148,6 @@ public class AccountAdminController {
 		accountAdmin.setId(id);
 		adminRepository.save(admin);
 		model.addAttribute("accountAdmin", accountAdmin);
-		return "redirect:/admin/accommodation";
+		return "redirect:/admin/account";
 	}
 }
