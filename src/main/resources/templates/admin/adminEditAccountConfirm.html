@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>管理者アカウント情報更新確認画面</title>
+</head>
+<body>
+	<header th:replace="admin/adminHeader"></header>
+	
+	<input type="hidden" name="adminId" th:value="${admin.id}">
+	<table>
+	<tr>
+		<th>名前</th>
+		<td th:text="${admin.name}" th:value="${admin.name}"></td>
+	</tr>
+	<tr>
+		<th>email</th>
+		<td th:text="${admin.email}" th:value="${admin.email}"></td>
+	</tr>
+	<tr>
+		<th>password</th>
+		<td th:text="${passwordMask}"></td>
+	</tr>
+	</table>
+	<p>この内容で登録しますか？</p>
+	<form action="/admin/confirm" method="post">
+		<button>はい</button>
+	</form>
+	<form th:action="@{/admin/{adminId}/edit(adminId=${admin.id})}" method="post">
+		<button>いいえ</button>
+	</form>
+</body>
+</html>

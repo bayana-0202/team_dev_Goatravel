@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>会員登録確認画面</title>
+</head>
+
+<body>
+	<header>登録内容確認</header>
+	<main>
+		<h1>以下の内容で登録しますか</h1>
+		<table border="1">
+			<tr>
+				<th>名前</th>
+			<td th:text="${name}"></td>
+			</tr>
+			<tr>
+				<th>ニックネーム</th>
+				<td th:text="${nickname}"></td>
+			</tr>
+			<tr>
+				<th>生年月日</th>
+				<td th:text="${birthday}"></td>
+			</tr>
+			<tr>
+				<th>電話番号</th>
+				<td th:text="${tel}"></td>
+			</tr>
+			<tr>
+				<th>性別</th>
+				<td th:if="${gender==0}"th:text="男"></td>
+				<td th:if="${gender==1}"th:text="女"></td>
+				<td th:if="${gender==2}"th:text="選択しない"></td>
+			</tr>
+			<tr>
+				<th>住所</th>
+				<td th:text="${address}"></td>
+			</tr>
+			<tr>
+				<th>メールアドレス</th>
+				<td th:text="${email}"></td>
+			</tr>
+			<tr>
+				<th>パスワード</th>
+				<td th:text="${passwordMask}"></td>
+			</tr>
+		</table>
+
+
+		<form action="/signup/complete" method="post">
+			<input type="hidden" name="name" th:value="${name}">
+			<input type="hidden" name="nickname" th:value="${nickname}">
+			<input type="hidden" name="birthday" th:value="${birthday}">
+			<input type="hidden" name="tel" th:value="${tel}">
+			<input type="hidden" name="gender" th:value="${gender}">
+			<input type="hidden" name="address" th:value="${address}">
+			<input type="hidden" name="password" th:value="${password}">
+			<input type="hidden" name="email" th:value="${email}">
+			<button>登録</button>
+
+
+		</form>
+
+		<a href="/signup">入力画面に戻る</a>
+
+	</main>
+
+</body>
+
+</html>

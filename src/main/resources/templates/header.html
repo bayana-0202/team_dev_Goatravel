@@ -1,0 +1,17 @@
+<header xmlns:th="http://www.thymeleaf.org" th:fragment="header_fragment(title)">
+	<h1 th:text="${title}"></h1>
+	<p>
+<!--	入れるときの例	<th:block th:replace="~{header :: header_fragment(-->
+<!--			title='予約一覧'-->
+<!--			)}"></th:block>-->
+		こんにちは、
+		<th:block th:if="${account}">
+			[[${@account.nickname}]]
+		</th:block>
+		<th:block th:unless="${account}">ゲスト</th:block>
+		さん
+	</p>
+	<th:block th:unless="${account}">
+	<a href="/login">ログイン</a>
+	</th:block>
+</header>

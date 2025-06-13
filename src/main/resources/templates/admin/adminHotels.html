@@ -5,12 +5,14 @@
 <title>ホテル一覧画面</title>
 </head>
 <body>
+	<header th:replace="admin/adminHeader"></header>
+
 	<h2>ホテル一覧</h2>
-	<a href="/admin/accommodation">全ホテル</a>
+	<a href="/admin/accommodation">全ホテル</a><br>
 	<a th:each="cateogry:${categories}"
-		th:href="@{/admin/accommodation(categoryId=${category.id})}"
-		th:text="${category.name}"></a>
-	<a href="/admin/account">管理者一覧</a>
+		th:href="@{/admin/accommodation(categoryId=${cateogry.id})}"
+		th:text="${cateogry.name}"></a><br>
+	<a href="/admin/account">管理者一覧</a><br>
 		
 	<table border="1">
 		<tr>
@@ -23,12 +25,13 @@
 		<tr th:each="accommodation:${accommodations}">
 			<td th:text="${accommodation.id}"></td>
 			<td th:text="${accommodation.name}"></td>
-			<td th:text="${accommodation.categoryId}"></td>
+			<td th:text="${accommodation.category.name}"></td>
 			<td th:text="${accommodation.address}"></td>
 			<td th:text="${accommodation.tel}"></td>
 		</tr>
 	</table>
 	
 	<a href="/admin/add">ホテル新規作成</a>
+	<a href="/admin/reserve">予約者一覧</a>
 </body>
 </html>

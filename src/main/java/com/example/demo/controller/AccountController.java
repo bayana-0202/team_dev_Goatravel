@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -35,8 +37,8 @@ public class AccountController {
 
 	@PostMapping("/login")
 	public String login(
-			@RequestParam("email") String email,
-			@RequestParam("password") String password,
+			@RequestParam(name = "email", defaultValue = "") String email,
+			@RequestParam(name = "password", defaultValue = "") String password,
 			Model model) {
 		List<User> users = userRepository.findByEmailAndPassword(email, password);
 		if (users.size() == 0) {
@@ -63,18 +65,63 @@ public class AccountController {
 
 	@PostMapping("/signup/confirm")
 	public String confirm(
-			@RequestParam("name") String name,
-			@RequestParam("nickname") String nickname,
-			@RequestParam("password") String password,
-			@RequestParam("checkPassword") String checkPassword,
-			@RequestParam("email") String email,
-			@RequestParam("checkEmail") String checkEmail,
-			@RequestParam("tel") String tel,
-			@RequestParam("gender") Integer gender,
-			@RequestParam("birthday") Date birthday,
-			@RequestParam("address") String address,
+			@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "nickname", defaultValue = "") String nickname,
+			@RequestParam(name = "password", defaultValue = "") String password,
+			@RequestParam(name = "checkPassword", defaultValue = "") String checkPassword,
+			@RequestParam(name = "email", defaultValue = "") String email,
+			@RequestParam(name = "checkEmail", defaultValue = "") String checkEmail,
+			@RequestParam(name = "tel", defaultValue = "") String tel,
+			@RequestParam(name = "gender", defaultValue = "") Integer gender,
+			@RequestParam(name = "birthday", defaultValue = "") LocalDate birthday,
+			@RequestParam(name = "address", defaultValue = "") String address,
 			Model model) {
+		List<String> errorList = new ArrayList<>();
+		if (name.length() == 0) {
+			errorList.add("名前を入力してください");
+		}
+		if (nickname.length() == 0) {
+			errorList.add("ニックネームを入力してください");
+		}
+		if (password.length() == 0) {
+			errorList.add("パスワードを入力してください");
+		}
+		if (email.length() == 0) {
+			errorList.add("メールアドレスを入力してください");
+		}
+		if (tel.length() == 0) {
+			errorList.add("電話番号を入力してください");
+		}
+		if (gender == null) {
+			errorList.add("性別を選択してください");
+		}
+		if (birthday == null) {
+			errorList.add("生年月日を入力してください");
+		}
+		if (address.length() == 0) {
+			errorList.add("住所を入力してください");
+		}
 
+		Optional<User> userEmail = userRepository.findByEmail(email);
+		if (userEmail.isPresent()) {
+			errorList.add("このメールアドレスは登録済みです");
+		}
+		Optional<User> userPassword = userRepository.findByTel(tel);
+		if (userPassword.isPresent()) {
+			errorList.add("この電話番号は登録済みです");
+		}
+
+		if (!(password.equals(checkPassword))) {
+			errorList.add("パスワードが一致しませんでした");
+		}
+		if (!(email.equals(checkEmail))) {
+			errorList.add("メールアドレスが一致しませんでした");
+		}
+
+		if (errorList.size() > 0) {
+			model.addAttribute("errorList", errorList);
+			return "addAccount";
+		}
 		model.addAttribute("name", name);
 		model.addAttribute("nickname", nickname);
 		model.addAttribute("password", password);
@@ -85,11 +132,28 @@ public class AccountController {
 		model.addAttribute("gender", gender);
 		model.addAttribute("birthday", birthday);
 		model.addAttribute("address", address);
-		return "addAccount";
+
+		String passwordMask = "●".repeat(password.length());
+		model.addAttribute("passwordMask", passwordMask);
+
+		return "confirmAccount";
 	}
 
 	@PostMapping("/signup/complete")
-	public String complete(Model model) {
+	public String complete(
+			@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "tel", defaultValue = "") String tel,
+			@RequestParam(name = "address", defaultValue = "") String address,
+			@RequestParam(name = "password", defaultValue = "") String password,
+			@RequestParam(name = "gender", defaultValue = "") Integer gender,
+			@RequestParam(name = "nickname", defaultValue = "") String nickname,
+			@RequestParam(name = "email", defaultValue = "") String email,
+			@RequestParam(name = "birthday", defaultValue = "") LocalDate birthday,
+			Model model) {
+		User user = new User(name, tel, address, password, gender, nickname, email, birthday);
+		userRepository.save(user);
+		model.addAttribute("user", user);
+
 		return "completeAccount";
 	}
 

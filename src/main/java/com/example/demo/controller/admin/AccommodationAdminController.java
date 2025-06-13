@@ -1,11 +1,13 @@
 package com.example.demo.controller.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -13,6 +15,7 @@ import com.example.demo.entity.Accommodation;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Reserve;
 import com.example.demo.entity.User;
+import com.example.demo.model.AccountAdmin;
 import com.example.demo.repository.AccommodationRepository;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.ReserveRepository;
@@ -33,6 +36,9 @@ public class AccommodationAdminController {
 	@Autowired
 	UserRepository userRepository;
 
+	@Autowired
+	AccountAdmin accountAdmin;
+
 	//宿泊施設一覧表示
 	@GetMapping("/admin/accommodation")
 	public String index(
@@ -51,6 +57,7 @@ public class AccommodationAdminController {
 			accommodationList = accommodationRepository.findByCategoryId(categoryId);//カテゴリー別宿泊施設一覧
 		}
 		model.addAttribute("accommodations", accommodationList);
+		model.addAttribute("accountAdmin", accountAdmin);
 
 		return "admin/adminHotels";
 	}
@@ -66,22 +73,49 @@ public class AccommodationAdminController {
 	public String check(
 			@RequestParam(name = "name", defaultValue = "") String name,
 			@RequestParam(name = "categoryId", defaultValue = "") Integer categoryId,
+			@RequestParam(name = "bathId", defaultValue = "") Integer bathId,
 			@RequestParam(name = "address", defaultValue = "") String address,
 			@RequestParam(name = "tel", defaultValue = "") String tel,
 			@RequestParam(name = "languageId", defaultValue = "") Integer languageId,
 			@RequestParam(name = "content", defaultValue = "") String content,
 			Model model) {
 
-		Accommodation accommodation = new Accommodation(categoryId, name, tel, address, languageId,
+		//エラーチェック
+		List<String> error = new ArrayList<>();
+		if (name == null || name.length() == 0) {
+			error.add("ホテル名を入力してください");
+		}
+		if (address == null || address.length() == 0) {
+			error.add("住所を入力してください");
+		}
+		if (tel == null || tel.length() == 0) {
+			error.add("電話番号を入力してください");
+		}
+		if (error.size() != 0) {
+			model.addAttribute("errors", error);
+			model.addAttribute("name", name);
+			model.addAttribute("address", address);
+			model.addAttribute("tel", tel);
+			model.addAttribute("categoryId", categoryId);
+			model.addAttribute("languageId", languageId);
+			model.addAttribute("bathId", bathId);
+			model.addAttribute("content", content);
+			return "admin/adminAddHotels";
+		}
+
+		//入力されたデータを保存する
+		Accommodation accommodation = new Accommodation(categoryId, bathId, name, tel, address, languageId,
 				content);
 		accommodationRepository.save(accommodation);
+		model.addAttribute(accommodation);
 
 		return "admin/adminConfirmHotels";
 	}
 
 	//確認画面からホテル一覧にリダイレクトする
 	@PostMapping("/admin/check/add")
-	public String add() {
+	public String add(Model model) {
+
 		return "redirect:/admin/accommodation";
 	}
 
@@ -97,4 +131,12 @@ public class AccommodationAdminController {
 
 		return "admin/adminReserve";
 	}
+
+	//予約を削除する
+	@PostMapping("/admin/{id}/delete")
+	public String deleteReserved(@PathVariable("id") Integer id) {
+		reserveRepository.deleteById(id);
+		return "redirect:/admin/reserve";
+	}
+
 }

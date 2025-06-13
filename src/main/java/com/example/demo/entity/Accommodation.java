@@ -10,8 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
@@ -20,13 +20,23 @@ import jakarta.persistence.Transient;
 public class Accommodation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;//プランID
+	private Integer id;//宿ID
 
 	@Column(name = "category_id")
 	private Integer categoryId;//宿カテゴリーID
 
 	@Column(name = "bath_id")
-	private Integer bathId;
+	private Integer bathId;//風呂ID
+
+	@ManyToOne
+	@JoinColumn(name = "category_id", insertable = false, updatable = false)
+	private Category category;
+	@ManyToOne
+	@JoinColumn(name = "language_id", insertable = false, updatable = false)
+	private Language language;
+	@ManyToOne
+	@JoinColumn(name = "bath_id", insertable = false, updatable = false)
+	private BathType bathType;
 
 	@OneToMany(mappedBy = "accommodation")
 	private List<Plan> plans = new ArrayList<>();
@@ -49,13 +59,6 @@ public class Accommodation {
 	private Integer languageId;//対応言語ID
 
 	private String content;//サービス内容
-
-	@OneToOne
-	@JoinColumn(name = "bath_id", insertable = false, updatable = false)
-	private BathType bathType;
-	@OneToOne
-	@JoinColumn(name = "language_id", insertable = false, updatable = false)
-	private Language language;
 
 	@Transient
 	private LocalDate minDate;
@@ -150,6 +153,10 @@ public class Accommodation {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public Category getCategory() {
+		return category;
 	}
 
 	public BathType getBathType() {

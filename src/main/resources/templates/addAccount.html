@@ -8,6 +8,9 @@
 	<header>アカウント新規作成</header>
 	
 	<form action="/signup/confirm" method="post">
+		<ul th:if="${errorList}">
+			<li th:each="error:${errorList}" th:text="${error}" style="color: red;"></li>
+		</ul>
 		<table border="1">
 			<tr>
 				<th>名前</th>
@@ -29,7 +32,7 @@
 			</tr>
 			<tr>
 				<th>電話番号</th>
-				<td><input type="text" name="tel" placeholder="電話番号"></td>
+				<td><input type="number" name="tel" placeholder="電話番号"></td>
 			</tr>
 			<tr>
 				<th>性別</th>
@@ -46,27 +49,27 @@
 				</td>
 			</tr>
 			<tr>
-				<th>パスワード</th>
-				<td>
-					<input type="text" name="password" placeholder="パスワード">
-				</td>
-			</tr>
-			<tr>
-				<th>確認用パスワード</th>
-				<td>
-					<input type="text" name="checkPassword" placeholder="パスワード確認用">
-				</td>
-			</tr>
-			<tr>
 				<th>メールアドレス</th>
 				<td>
-					<input type="text" name="email" placeholder="メールアドレス">
+					<input type="email" name="email" placeholder="メールアドレス">
 				</td>
 			</tr>
 			<tr>
 				<th>確認用メールアドレス</th>
 				<td>
-					<input type="text" name="checkEmail" placeholder="メールアドレス確認用">
+					<input type="email" name="checkEmail" placeholder="確認用メールアドレス">
+				</td>
+			</tr>
+			<tr>
+				<th>パスワード</th>
+				<td>
+					<input type="password" name="password" placeholder="パスワード">
+				</td>
+			</tr>
+			<tr>
+				<th>確認用パスワード</th>
+				<td>
+					<input type="password" name="checkPassword" placeholder="確認用パスワード">
 				</td>
 			</tr>
 		</table>
