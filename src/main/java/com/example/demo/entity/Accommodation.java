@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +9,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "accommodations")
@@ -46,6 +50,19 @@ public class Accommodation {
 
 	private String content;//サービス内容
 
+	@OneToOne
+	@JoinColumn(name = "bath_id", insertable = false, updatable = false)
+	private BathType bathType;
+	@OneToOne
+	@JoinColumn(name = "language_id", insertable = false, updatable = false)
+	private Language language;
+
+	@Transient
+	private LocalDate minDate;
+
+	@Transient
+	private Integer minPrice;
+
 	//デフォルトコンストラクタ
 	public Accommodation() {
 
@@ -63,18 +80,17 @@ public class Accommodation {
 		this.languageId = languageId;
 		this.content = content;
 	}
-
-	//こっち使っているなら上記のほうにしてこのコンストラクタを削除してね
-	public Accommodation(Integer categoryId, String name, String tel, String address,
-			Integer languageId,
-			String content) {
-		this.categoryId = categoryId;
-		this.name = name;
-		this.tel = tel;
-		this.address = address;
-		this.languageId = languageId;
-		this.content = content;
-	}
+	//	//こっち使っているなら上記のほうにしてこのコンストラクタを削除してね
+	//	public Accommodation(Integer categoryId, String name, String tel, String address,
+	//			Integer languageId,
+	//			String content) {
+	//		this.categoryId = categoryId;
+	//		this.name = name;
+	//		this.tel = tel;
+	//		this.address = address;
+	//		this.languageId = languageId;
+	//		this.content = content;
+	//	}
 
 	public Integer getCategoryId() {
 		return categoryId;
@@ -134,6 +150,38 @@ public class Accommodation {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public BathType getBathType() {
+		return bathType;
+	}
+
+	public void setBathType(BathType bathType) {
+		this.bathType = bathType;
+	}
+
+	public Language getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(Language language) {
+		this.language = language;
+	}
+
+	public LocalDate getMinDate() {
+		return minDate;
+	}
+
+	public void setMinDate(LocalDate minDate) {
+		this.minDate = minDate;
+	}
+
+	public Integer getMinPrice() {
+		return minPrice;
+	}
+
+	public void setMinPrice(Integer minPrice) {
+		this.minPrice = minPrice;
 	}
 
 }
