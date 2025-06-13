@@ -7,7 +7,8 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS room_types;
 DROP TABLE IF EXISTS languages;
-DROP TYPE IF EXISTS bath;
+DROP TABLE IF EXISTS bath_types;
+--DROP TYPE IF EXISTS bath;
 
 -- 管理者テーブル
 CREATE TABLE admins
@@ -32,13 +33,20 @@ CREATE TABLE languages
 id SERIAL PRIMARY KEY,
 name TEXT
 );
-CREATE TYPE bath AS ENUM ('ユニットバス', '風呂', 'シャワールーム');
+--風呂の種類
+CREATE TABLE bath_types
+(
+id SERIAL PRIMARY KEY,
+name TEXT
+);
+--CREATE TYPE bath AS ENUM ('ユニットバス', '風呂', 'シャワールーム');
 ---- 宿泊施設テーブル
 CREATE TABLE accommodations
 (
 id SERIAL PRIMARY KEY,
 category_id INTEGER REFERENCES categories(id),
-bath bath NOT NULL,
+bath_id INTEGER REFERENCES bath_types(id),
+--bath bath NOT NULL,
 name VARCHAR(200),
 tel TEXT,
 address TEXT,
@@ -84,3 +92,4 @@ plan_id INTEGER REFERENCES plans(id),
 quantity INTEGER,
 roomCount INTEGER
 );
+

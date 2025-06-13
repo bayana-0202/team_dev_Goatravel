@@ -16,6 +16,10 @@ INSERT INTO categories(name) VALUES('その他');
 INSERT INTO room_types(id,name) VALUES(1,'シングル');
 INSERT INTO room_types(id,name) VALUES(2,'ダブル');
 INSERT INTO room_types(id,name) VALUES(3,'和室');
+--風呂の種類
+INSERT INTO bath_types(id,name) VALUES(1,'ユニットバス');
+INSERT INTO bath_types(id,name) VALUES(2,'風呂');
+INSERT INTO bath_types(id,name) VALUES(3,'大浴場');
 
 --言語の種類
 INSERT INTO languages(id,name) VALUES(1,'日本語');
@@ -24,16 +28,16 @@ INSERT INTO languages(id,name) VALUES(3,'日本語、中国語');
 INSERT INTO languages(id,name) VALUES(4,'日本語、英語、中国語');
 
 --宿泊施設
-INSERT INTO accommodations(category_id, bath, name,tel,address,language_id,content) VALUES(1,'風呂','スペシャルホテル','042-543-8795','東京都品川区',2,'アメニティ');
-INSERT INTO accommodations(category_id, bath, name,tel,address,language_id,content) VALUES(1,'シャワールーム','円楽','035-715-9465','大阪府堺市',1,'FREE Wi-Fi');
-INSERT INTO accommodations(category_id, bath, name,tel,address,language_id,content) VALUES(1,'ユニットバス','ロイヤルホテル','090-4601-3577','福岡県北九州市',1,'アメニティ');
-INSERT INTO accommodations(category_id, bath, name,tel,address,language_id,content) VALUES(2,'風呂','オーシャンテラスリゾートホテル','087-543-9001','沖縄県石垣市',3,'FREE Wi-Fi、アメニティ');
-INSERT INTO accommodations(category_id, bath, name,tel,address,language_id,content) VALUES(2,'ユニットバス','スノーリゾートホテル','057-430-0597','北海道帯広市',1,'FREE Wi-Fi、アメニティ');
-INSERT INTO accommodations(category_id, bath, name,tel,address,language_id,content) VALUES(2,'風呂','ディズニーホテル','048-139-7468','千葉県浦安市',4,'FREE Wi-Fi、アメニティ');
-INSERT INTO accommodations(category_id, bath, name,tel,address,language_id,content) VALUES(3,'ユニットバス','紅葉','0285-85-1657','栃木県那須塩原市',3,'アメニティ');
-INSERT INTO accommodations(category_id, bath, name,tel,address,language_id,content) VALUES(3,'風呂','桜館','073-458-9139','神奈川県箱根町',4,'FREE Wi-Fi、アメニティ');
-INSERT INTO accommodations(category_id, bath, name,tel,address,language_id,content) VALUES(1,'風呂','スペシャルホテル','042-543-8795','東京都品川区',2,'アメニティ');
-INSERT INTO accommodations(category_id, bath, name,tel,address,language_id,content) VALUES(3,'シャワールーム','紫陽花','078-891-6725','青森県',1,'FREE Wi-Fi、アメニティ');
+INSERT INTO accommodations(category_id, bath_id, name,tel,address,language_id,content) VALUES(1,2,'スペシャルホテル','042-543-8795','東京都品川区',2,'アメニティ');
+INSERT INTO accommodations(category_id, bath_id, name,tel,address,language_id,content) VALUES(1,3,'円楽','035-715-9465','大阪府堺市',1,'FREE Wi-Fi');
+INSERT INTO accommodations(category_id, bath_id, name,tel,address,language_id,content) VALUES(1,1,'ロイヤルホテル','090-4601-3577','福岡県北九州市',1,'アメニティ');
+INSERT INTO accommodations(category_id, bath_id, name,tel,address,language_id,content) VALUES(2,2,'オーシャンテラスリゾートホテル','087-543-9001','沖縄県石垣市',3,'FREE Wi-Fi、アメニティ');
+INSERT INTO accommodations(category_id, bath_id, name,tel,address,language_id,content) VALUES(2,1,'スノーリゾートホテル','057-430-0597','北海道帯広市',1,'FREE Wi-Fi、アメニティ');
+INSERT INTO accommodations(category_id, bath_id, name,tel,address,language_id,content) VALUES(2,2,'ディズニーホテル','048-139-7468','千葉県浦安市',4,'FREE Wi-Fi、アメニティ');
+INSERT INTO accommodations(category_id, bath_id, name,tel,address,language_id,content) VALUES(3,1,'紅葉','0285-85-1657','栃木県那須塩原市',3,'アメニティ');
+INSERT INTO accommodations(category_id, bath_id, name,tel,address,language_id,content) VALUES(3,2,'桜館','073-458-9139','神奈川県箱根町',4,'FREE Wi-Fi、アメニティ');
+INSERT INTO accommodations(category_id, bath_id, name,tel,address,language_id,content) VALUES(1,2,'スペシャルホテル','042-543-8795','東京都品川区',2,'アメニティ');
+INSERT INTO accommodations(category_id, bath_id, name,tel,address,language_id,content) VALUES(3,3,'紫陽花','078-891-6725','青森県',1,'FREE Wi-Fi、アメニティ');
 
 --顧客向け提供プラン
 INSERT INTO plans(room_id,price, accommodation_id,date) VALUES(1,8000,1,'2026-02-17');
