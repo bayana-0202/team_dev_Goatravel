@@ -23,7 +23,7 @@
 		<tr th:each="accommodation:${accommodations}">
 			<td th:text="${accommodation.id}"></td>
 			<td th:text="${accommodation.name}"></td>
-			<td th:text="${accommodation.categoryId}"></td>
+			<td th:text="${accommodation.category.name}"></td>
 			<td th:text="${accommodation.address}"></td>
 			<td th:text="${accommodation.tel}"></td>
 		</tr>
