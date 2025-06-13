@@ -4,7 +4,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+	.popupWraper{
+	    position: relative;
+	}
+	#check-popup{
+			display: none;
+			position: absolute;
+			border: 3px solid black;
+		}
+</style>
 <body>
+	<main class="popupWraper">
 	<table>
 	<tr>
 	<th>ホテル名</th>
@@ -16,8 +27,30 @@
 	<td th:text="${reserve.plan.accommodation.name}"></td>
 	<td th:text="${reserve.plan.date}"></td>
 	<td th:text="${reserve.plan.roomType.name}"></td>
-	<td><button>キャンセル</button></td>
+	<td><button id="cancel-btn">キャンセル</button></td>
 	</tr>
 	</table>
+	<a>宿一覧へ</a>
+<!--	ポップアップ-->
+	<section id="check-popup">
+		<p>予約をキャンセルしますか？</p>
+		<table>
+			<tr>
+				<td><button>戻る</button></td>
+				<td><button>削除</button></td>
+			</tr>
+		</table>
+	</section>
+	</main>
+	<script>
+		let btnE1 = document.getElementById("cancel-btn");
+		let popE1 = document.getElementById("check-popup");
+		
+		btnE1.addEventListener("click",function(){
+			console.log("クリック");
+			popE1.style.display ="block";
+		})
+	</script>
+	
 </body>
 </html>
