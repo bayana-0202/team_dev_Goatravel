@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -70,11 +72,56 @@ public class AccountController {
 			@RequestParam(name = "email", defaultValue = "") String email,
 			@RequestParam(name = "checkEmail", defaultValue = "") String checkEmail,
 			@RequestParam(name = "tel", defaultValue = "") String tel,
-			@RequestParam(name = "gender", defaultValue = "") Integer gender,
+			@RequestParam(name = "gender", defaultValue = "") String gender,
 			@RequestParam(name = "birthday", defaultValue = "") LocalDate birthday,
 			@RequestParam(name = "address", defaultValue = "") String address,
 			Model model) {
-		System.out.println(name);
+		List<String> errorList = new ArrayList<>();
+		if (name.length() == 0) {
+			errorList.add("名前を入力してください");
+		}
+		if (nickname.length() == 0) {
+			errorList.add("ニックネームを入力してください");
+		}
+		if (password.length() == 0) {
+			errorList.add("パスワードを入力してください");
+		}
+		if (email.length() == 0) {
+			errorList.add("メールアドレスを入力してください");
+		}
+		if (tel.length() == 0) {
+			errorList.add("電話番号を入力してください");
+		}
+		if (gender == null) {
+			errorList.add("性別を選択してください");
+		}
+		if (birthday == null) {
+			errorList.add("生年月日を入力してください");
+		}
+		if (address.length() == 0) {
+			errorList.add("住所を入力してください");
+		}
+
+		Optional<User> userEmail = userRepository.findByEmail(email);
+		if (userEmail.isPresent()) {
+			errorList.add("このメールアドレスは登録済みです");
+		}
+		Optional<User> userPassword = userRepository.findByTel(tel);
+		if (userPassword.isPresent()) {
+			errorList.add("この電話番号は登録済みです");
+		}
+
+		if (!(password.equals(checkPassword))) {
+			errorList.add("パスワードが一致しませんでした");
+		}
+		if (!(email.equals(checkEmail))) {
+			errorList.add("メールアドレスが一致しませんでした");
+		}
+
+		if (errorList.size() > 0) {
+			model.addAttribute("errorList", errorList);
+			return "addAccount";
+		}
 		model.addAttribute("name", name);
 		model.addAttribute("nickname", nickname);
 		model.addAttribute("password", password);
