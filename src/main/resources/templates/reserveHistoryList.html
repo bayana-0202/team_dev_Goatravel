@@ -12,9 +12,9 @@
 	<th>部屋タイプ</th>
 	<th>キャンセル</th>
 	</tr>
-	<tr>
+	<tr th:each="reserve:${reserves}">
 	<td></td>
-	<td></td>
+	<td th:text=${reserve.plan.date}></td>
 	<td></td>
 	<td></td>
 	</tr>
