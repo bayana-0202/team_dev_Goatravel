@@ -34,7 +34,7 @@ public class AccountAdminController {
 	}
 
 	//ログイン処理
-	@PostMapping("/admin/login")
+	@PostMapping("/admin/accommodation")
 	public String login(
 			@RequestParam(name = "email", defaultValue = "") String email,
 			@RequestParam(name = "password", defaultValue = "") String password,

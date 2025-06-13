@@ -5,11 +5,14 @@
 <title>管理者ログイン画面</title>
 </head>
 <body>
-	<header>管理者ログイン</header>
+	<header>
+		<h1>管理者ログイン</h1>
+	</header>
 	
 	<p th:if="${errormsg}" th:text="${errormsg}" style="color:red"></p>
 	<main>
-		<form action="/admin/login" method="post">
+		<form action="/admin/accommodation" method="post">
+			<table>
 			<tr>
 				<th>管理者メールアドレス</th>
 				<td>
@@ -22,6 +25,7 @@
 					<input type="text" name="password">
 				</td>
 			</tr>
+			</table>
 			<br>
 			<button>ログイン</button>
 		</form>
