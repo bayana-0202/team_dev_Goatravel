@@ -14,4 +14,8 @@
 	<th:block th:unless="${account}">
 	<a href="/login">ログイン</a>
 	</th:block>
+	
+	<th:block th:if="${account}">
+	<a href="/logout">ログアウト</a>
+	</th:block>
 </header>

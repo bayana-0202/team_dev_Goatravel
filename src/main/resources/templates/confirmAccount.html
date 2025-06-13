@@ -7,7 +7,11 @@
 </head>
 
 <body>
-	<header>登録内容確認</header>
+	<th:block th:replace="~{header :: header_fragment(
+					title='登録内容確認'
+					)}"></th:block>
+	
+	
 	<main>
 		<h1>以下の内容で登録しますか</h1>
 		<table border="1">
