@@ -90,6 +90,6 @@ id SERIAL PRIMARY KEY,
 user_id INTEGER REFERENCES users(id),
 plan_id INTEGER REFERENCES plans(id),
 quantity INTEGER,
-roomCount INTEGER
+room_count INTEGER
 );
 

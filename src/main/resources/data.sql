@@ -73,7 +73,7 @@ INSERT INTO users(name,tel,address,password,gender,nickname,email,birthday) VALU
 INSERT INTO users(name,tel,address,password,gender,nickname,email,birthday) VALUES('高橋一郎','080-9873-2178','京都府宇治市','itiro-258',0,'いちろう','ichiro.takahashi@ttt.com','1995-02-01');
 
 --予約
-INSERT INTO reserves(user_id,plan_id,quantity,roomCount) VALUES(1,1,1,2);
-INSERT INTO reserves(user_id,plan_id,quantity,roomCount) VALUES(1,15,2,1);
-INSERT INTO reserves(user_id,plan_id,quantity,roomCount) VALUES(2,7,1,2);
-INSERT INTO reserves(user_id,plan_id,quantity,roomCount) VALUES(2,25,2,1);
+INSERT INTO reserves(user_id,plan_id,quantity,room_count) VALUES(1,1,1,2);
+INSERT INTO reserves(user_id,plan_id,quantity,room_count) VALUES(1,15,2,1);
+INSERT INTO reserves(user_id,plan_id,quantity,room_count) VALUES(2,7,1,2);
+INSERT INTO reserves(user_id,plan_id,quantity,room_count) VALUES(2,25,2,1);
