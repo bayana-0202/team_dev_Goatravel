@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -16,13 +18,21 @@ import jakarta.persistence.Table;
 public class Accommodation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;//プランID
+	private Integer id;//宿ID
 
 	@Column(name = "category_id")
 	private Integer categoryId;//宿カテゴリーID
 
 	@Column(name = "bath_id")
-	private Integer bathId;
+	private Integer bathId;//風呂ID
+
+	@ManyToOne
+	@JoinColumn(name = "category_id", insertable = false, updatable = false)
+	private Category category;
+
+	@ManyToOne
+	@JoinColumn(name = "bath_id", insertable = false, updatable = false)
+	private BathType bathType;
 
 	@OneToMany(mappedBy = "accommodation")
 	private List<Plan> plans = new ArrayList<>();
@@ -134,6 +144,14 @@ public class Accommodation {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public BathType getBathType() {
+		return bathType;
 	}
 
 }
