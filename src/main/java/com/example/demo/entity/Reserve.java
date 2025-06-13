@@ -20,11 +20,20 @@ public class Reserve {
 	@Column(name = "plan_id")
 	private Integer planId;
 	private Integer quantity;
+	@Column(name = "roomcount") //名前変更
 	private Integer roomCount;
 
 	@ManyToOne
 	@JoinColumn(name = "plan_id", insertable = false, updatable = false)
 	private Plan plan;
+
+	public Plan getPlan() {
+		return plan;
+	}
+
+	public void setPlan(Plan plan) {
+		this.plan = plan;
+	}
 
 	public Reserve() {
 
