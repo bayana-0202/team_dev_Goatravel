@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,7 +28,7 @@ public class AccountAdminController {
 	AdminRepository adminRepository;
 
 	//管理者のログイン画面を表示
-	@GetMapping({ "/admin/login", "/admin/logout" })
+	@GetMapping("/admin/login")
 	public String index() {
 
 		return "admin/adminLogin";
@@ -65,6 +66,13 @@ public class AccountAdminController {
 		}
 	}
 
+	//ログアウト
+	@GetMapping("/admin/logout")
+	public String logout() {
+		session.invalidate();
+		return "redirect:/admin/login";
+	}
+
 	//管理者の一覧画面
 	@GetMapping("/admin/account")
 	public String accouunt(Model model) {
@@ -72,9 +80,18 @@ public class AccountAdminController {
 		//全管理者の取得
 		List<Admin> adminAccount = adminRepository.findAll();
 		model.addAttribute("accounts", adminAccount);
+
+		model.addAttribute("accountAdmin", accountAdmin);
 		return "admin/adminAccount";
 	}
 
 	//管理者情報の更新画面
+	@GetMapping("/admin/{id}/edit")
+	public String edit(@PathVariable("id") Integer id, Model model) {
+		Admin admin = adminRepository.findById(id).get();
+		model.addAttribute("admin", admin);
+		model.addAttribute("accountAdmin", accountAdmin);
+		return "admin/adminEditAccount";
+	}
 
 }

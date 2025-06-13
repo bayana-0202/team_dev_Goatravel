@@ -5,9 +5,7 @@
 <title>管理者のアカウント一覧</title>
 </head>
 <body>
-	<header>
-		<h1>管理者一覧</h1>
-	</header>
+	<header th:replace="admin/adminHeader"></header>
 	
 	<main>
 		<table border="1">
@@ -27,9 +25,6 @@
 		<form action="/admin/accommodation" method="get">
 			<button>ホテル一覧画面に戻る</button>
 		</form>
-		<from th:action="/admin/{accountId}/edit(accountId=${account.id})}" method="get">
-			<button>管理者情報の更新</button>
-		</from>
 	</main>
 </body>
 </html>
