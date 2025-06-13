@@ -5,6 +5,31 @@
 <title>管理者のアカウント一覧</title>
 </head>
 <body>
-
+	<header>
+		<h1>管理者一覧</h1>
+	</header>
+	
+	<main>
+		<table border="1">
+			<tr>
+				<th>管理者ID</th>
+				<th>管理者名</th>
+				<th>メールアドレス</th>
+				<th>電話番号</th>
+			</tr>
+			<tr th:each="admin:${accounts}">
+				<td th:text="${admin.id}"></td>
+				<td th:text="${admin.name}"></td>
+				<td th:text="${admin.email}"></td>
+				<td th:text="${admin.tel}"></td>
+			</tr>
+		</table>
+		<form action="/admin/accommodation" method="get">
+			<button>ホテル一覧画面に戻る</button>
+		</form>
+		<from th:action="/admin/{accountId}/edit(accountId=${account.id})}" method="get">
+			<button>管理者情報の更新</button>
+		</from>
+	</main>
 </body>
 </html>
