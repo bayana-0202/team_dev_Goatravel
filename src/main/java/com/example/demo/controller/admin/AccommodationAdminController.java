@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -66,22 +67,25 @@ public class AccommodationAdminController {
 	public String check(
 			@RequestParam(name = "name", defaultValue = "") String name,
 			@RequestParam(name = "categoryId", defaultValue = "") Integer categoryId,
+			@RequestParam(name = "bathId", defaultValue = "") Integer bathId,
 			@RequestParam(name = "address", defaultValue = "") String address,
 			@RequestParam(name = "tel", defaultValue = "") String tel,
 			@RequestParam(name = "languageId", defaultValue = "") Integer languageId,
 			@RequestParam(name = "content", defaultValue = "") String content,
 			Model model) {
 
-		Accommodation accommodation = new Accommodation(categoryId, name, tel, address, languageId,
+		Accommodation accommodation = new Accommodation(categoryId, bathId, name, tel, address, languageId,
 				content);
 		accommodationRepository.save(accommodation);
+		model.addAttribute(accommodation);
 
 		return "admin/adminConfirmHotels";
 	}
 
 	//確認画面からホテル一覧にリダイレクトする
 	@PostMapping("/admin/check/add")
-	public String add() {
+	public String add(Model model) {
+
 		return "redirect:/admin/accommodation";
 	}
 
@@ -97,4 +101,12 @@ public class AccommodationAdminController {
 
 		return "admin/adminReserve";
 	}
+
+	//予約を削除する
+	@PostMapping("/admin/{id}/delete")
+	public String deleteReserved(@PathVariable("id") Integer id) {
+		reserveRepository.deleteById(id);
+		return "redirect:/admin/reserve";
+	}
+
 }
