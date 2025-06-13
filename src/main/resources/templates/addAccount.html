@@ -2,9 +2,80 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>アカウント新規作成</title>
 </head>
 <body>
+	<header>アカウント新規作成</header>
+	
+	<form action="/signup/confirm" method="post">
+		<table border="1">
+			<tr>
+				<th>名前</th>
+				<td>
+					<input type="text" name="name" placeholder="名前">
+				</td>
+			</tr>
+			<tr>
+				<th>ニックネーム</th>
+				<td>
+					<input type="text" name="nickname" placeholder="ニックネーム">
+				</td>
+			</tr>
+			<tr>
+				<th>生年月日</th>
+				<td>
+					<input type="date" name="birthday" placeholder="成年月日">
+				</td>
+			</tr>
+			<tr>
+				<th>電話番号</th>
+				<td><input type="text" name="tel" placeholder="電話番号"></td>
+			</tr>
+			<tr>
+				<th>性別</th>
+				<td>
+					<input type="radio" name="gender" value="0" checked>男
+							<input type="radio" name="gender" value="1">女
+							<input type="radio" name="gender" value="2">選択しない
+				</td>
+			</tr>
+			<tr>
+				<th>住所</th>
+				<td>
+					<input type="text" name="address" placeholder="住所">
+				</td>
+			</tr>
+			<tr>
+				<th>パスワード</th>
+				<td>
+					<input type="text" name="password" placeholder="パスワード">
+				</td>
+			</tr>
+			<tr>
+				<th>確認用パスワード</th>
+				<td>
+					<input type="text" name="checkPassword" placeholder="パスワード確認用">
+				</td>
+			</tr>
+			<tr>
+				<th>メールアドレス</th>
+				<td>
+					<input type="text" name="email" placeholder="メールアドレス">
+				</td>
+			</tr>
+			<tr>
+				<th>確認用メールアドレス</th>
+				<td>
+					<input type="text" name="checkEmail" placeholder="メールアドレス確認用">
+				</td>
+			</tr>
+		</table>
+		<button>新規作成</button>
+		
+	
+		
+	</form>
 
+	<a href="/login">ログイン画面に戻る</a>
 </body>
 </html>
