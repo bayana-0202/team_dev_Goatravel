@@ -2,9 +2,44 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>管理者情報の更新</title>
 </head>
 <body>
-
+	<header th:replace="admin/adminHeader"></header>
+	
+	<h3>ユーザー情報の更新</h3>
+	<ul th:each="error:${errors}"
+		th:text="${error}" style="color:red">
+	</ul>
+	<form th:action="@{/admin/{adminId}/edit(adminId=${admin.id})}" method="post">
+		<input type="hidden" name="id" th:value="${admin.id}"> 
+		<tabel border="1">
+			<tr>
+				<th>お名前</th>
+				<td><input type="text" name="name" th:value="${admin.name}"></td>
+			</tr>
+			<tr>
+				<th>e-mail</th>
+				<td><input type="text" name="email" th:value="${admin.email}"></td>
+			</tr>
+			<tr>
+				<th>電話番号</th>
+				<td><input type="text" name="tel" th:value="${admin.tel}"></td>
+			</tr>
+			<tr>
+				<th>password</th>
+				<td class="password-container">
+					<input type="password" name="password">
+				</td>
+			</tr>
+			<tr>
+				<th>passoword 確認用</th>
+				<td class="password-container">
+					<input type="password" name="password_confirm">
+				</td>
+			</tr>
+		</tabel>
+		<button>更新する</button>
+	</form>
 </body>
 </html>
