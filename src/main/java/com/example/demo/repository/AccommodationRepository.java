@@ -16,10 +16,19 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, In
 	 * @param languageId
 	 * @return
 	 */
-	List<Accommodation> findByCategoryIdAndBathIdAndLanguageId(Integer categoryId, Integer bathId,
-			Integer languageId);
 
-	//宿泊施設のカテゴリー
+	List<Accommodation> findByCategoryIdAndBathIdAndLanguageId(Integer categoryId, Integer bathId, Integer languageId);
+
+	List<Accommodation> findByCategoryIdAndBathId(Integer categoryId, Integer bathId);
+
+	List<Accommodation> findByCategoryIdAndLanguageId(Integer categoryId, Integer languageId);
+
+	List<Accommodation> findByBathIdAndLanguageId(Integer bathId, Integer languageId);
+
 	List<Accommodation> findByCategoryId(Integer categoryId);
+
+	List<Accommodation> findByBathId(Integer bathId);
+
+	List<Accommodation> findByLanguageId(Integer languageId);
 
 }

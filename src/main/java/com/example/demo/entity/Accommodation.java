@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "accommodations")
@@ -29,7 +31,9 @@ public class Accommodation {
 	@ManyToOne
 	@JoinColumn(name = "category_id", insertable = false, updatable = false)
 	private Category category;
-
+	@ManyToOne
+	@JoinColumn(name = "language_id", insertable = false, updatable = false)
+	private Language language;
 	@ManyToOne
 	@JoinColumn(name = "bath_id", insertable = false, updatable = false)
 	private BathType bathType;
@@ -54,11 +58,13 @@ public class Accommodation {
 	@Column(name = "language_id")
 	private Integer languageId;//対応言語ID
 
-	@ManyToOne
-	@JoinColumn(name = "language_id", insertable = false, updatable = false)
-	private Language language;
-
 	private String content;//サービス内容
+
+	@Transient
+	private LocalDate minDate;
+
+	@Transient
+	private Integer minPrice;
 
 	//デフォルトコンストラクタ
 	public Accommodation() {
@@ -77,18 +83,17 @@ public class Accommodation {
 		this.languageId = languageId;
 		this.content = content;
 	}
-
-	//こっち使っているなら上記のほうにしてこのコンストラクタを削除してね
-	public Accommodation(Integer categoryId, String name, String tel, String address,
-			Integer languageId,
-			String content) {
-		this.categoryId = categoryId;
-		this.name = name;
-		this.tel = tel;
-		this.address = address;
-		this.languageId = languageId;
-		this.content = content;
-	}
+	//	//こっち使っているなら上記のほうにしてこのコンストラクタを削除してね
+	//	public Accommodation(Integer categoryId, String name, String tel, String address,
+	//			Integer languageId,
+	//			String content) {
+	//		this.categoryId = categoryId;
+	//		this.name = name;
+	//		this.tel = tel;
+	//		this.address = address;
+	//		this.languageId = languageId;
+	//		this.content = content;
+	//	}
 
 	public Integer getCategoryId() {
 		return categoryId;
@@ -156,6 +161,34 @@ public class Accommodation {
 
 	public BathType getBathType() {
 		return bathType;
+	}
+
+	public void setBathType(BathType bathType) {
+		this.bathType = bathType;
+	}
+
+	public Language getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(Language language) {
+		this.language = language;
+	}
+
+	public LocalDate getMinDate() {
+		return minDate;
+	}
+
+	public void setMinDate(LocalDate minDate) {
+		this.minDate = minDate;
+	}
+
+	public Integer getMinPrice() {
+		return minPrice;
+	}
+
+	public void setMinPrice(Integer minPrice) {
+		this.minPrice = minPrice;
 	}
 
 }
