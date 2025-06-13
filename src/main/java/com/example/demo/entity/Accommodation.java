@@ -43,10 +43,9 @@ public class Accommodation {
 
 	}
 
-	public Accommodation(Integer categoryId, bathType bath, String name, String tel, String address, Integer languageId,
+	public Accommodation(Integer categoryId, String name, String tel, String address, Integer languageId,
 			String content) {
 		this.categoryId = categoryId;
-		this.bath = bath;
 		this.name = name;
 		this.tel = tel;
 		this.address = address;

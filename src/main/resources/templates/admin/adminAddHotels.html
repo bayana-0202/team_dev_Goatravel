@@ -1,14 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
+
 <body>
 	<h1>ホテル新規作成</h1>
 	<form action="/admin/check" method="post">
+		<table border="1">
+			<tr>
+				<th>ホテル</th>
+				<td><input type="text" name="name"></td>
+			</tr>
+			<tr>
+				<th>カテゴリー</th>
+				<td>
+					<input type="radio" name="categoryId" value="1">ビジネス
+					<input type="radio" name="categoryId" value="2">リゾート
+					<input type="radio" name="categoryId" value="3">旅館
+					<input type="radio" name="categoryId" value="4">その他
+				</td>
+			</tr>
+			<tr>
+				<th>住所</th>
+				<td><input type="text" name="address"></td>
+			</tr>
+			<tr>
+				<th>電話番号</th>
+				<td><input type="text" name="tel"></td>
+			</tr>
+			<tr>
+				<th>対応言語</th>
+				<td>
+					<select name="languageId">
+						<option value="1">日本語</option>
+						<option value="2">日本語、英語</option>
+						<option value="3">日本語、中国語</option>
+						<option value="4">日本語、英語、中国語</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>内容</th>
+				<td><input type="text" name="content"></td>
+			</tr>
+		</table>
 		<button>作成</button>
 	</form>
-	
+
 </body>
+
 </html>
