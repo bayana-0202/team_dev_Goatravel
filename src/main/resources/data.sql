@@ -69,8 +69,8 @@ INSERT INTO plans(room_id,price, accommodation_id,date) VALUES(2,25000,9,'2025-0
 INSERT INTO plans(room_id,price, accommodation_id,date) VALUES(3,19000,9,'2025-09-30');
 
 --顧客
-INSERT INTO users(name,tel,address,password,gender,nickname,email,birthday) VALUES('佐藤花子','080-4567-8912','東京都港区','hanatan123',1,'はなたん','hanako.sato@sss.com','1990-01-01');
-INSERT INTO users(name,tel,address,password,gender,nickname,email,birthday) VALUES('高橋一郎','080-9873-2178','京都府宇治市','itiro-258',0,'いちろう','ichiro.takahashi@ttt.com','1995-02-01');
+INSERT INTO users(name,tel,address,password,gender,nickname,email,birthday) VALUES('佐藤花子','08045678912','東京都港区','hanatan123',1,'はなたん','hanako.sato@sss.com','1990-01-01');
+INSERT INTO users(name,tel,address,password,gender,nickname,email,birthday) VALUES('高橋一郎','08098732178','京都府宇治市','itiro-258',0,'いちろう','ichiro.takahashi@ttt.com','1995-02-01');
 
 --予約
 INSERT INTO reserves(user_id,plan_id,quantity,room_count) VALUES(1,1,1,2);
