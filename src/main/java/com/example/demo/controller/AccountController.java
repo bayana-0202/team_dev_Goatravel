@@ -52,6 +52,6 @@ public class AccountController {
 			account.setEmail(users.get(0).getEmail());
 			account.setBirthday(users.get(0).getBirthday());
 		}
-		return "redirect:/search";
+		return "redirect:/";
 	}
 }

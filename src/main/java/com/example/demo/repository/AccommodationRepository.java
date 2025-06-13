@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.entity.Accommodation;
 
 public interface AccommodationRepository extends JpaRepository<Accommodation, Integer> {
-	enum BathType {
-		ユニットバス, 風呂, シャワールーム
-	}
+	//	enum BathType {
+	//		ユニットバス, 風呂, シャワールーム
+	//	}
 
 	/**
 	 * 宿一覧検索
@@ -19,7 +19,10 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, In
 	 * @param languageId
 	 * @return
 	 */
-	List<Accommodation> findByCategoryIdAndBathAndLanguageId(Integer categoryId, BathType bath,
-			Integer languageId);
+	List<Accommodation> findByCategoryIdAndLanguageId(Integer categoryId, Integer languageId);
+
+	List<Accommodation> findByLanguageId(Integer languagedId);
+
+	List<Accommodation> findByCategoryId(Integer categoryId);
 
 }

@@ -5,22 +5,27 @@
 <title>ホテル一覧画面</title>
 </head>
 <body>
-	<header th:replace="header"></header>
-
+	<h1>Goatravel</h1>
 	<table border="1">
 		<tr>
 			<th>NO</th>
 			<th>ホテル名</th>
-			<th>日付</th>
+<!--			<th>日付</th>-->
 			<th>住所</th>
 			<th>対応言語</th>
-			<th>風呂タイプ</th>
-			<th>最安値</th>
+<!--			<th>風呂タイプ</th>-->
+<!--			<th>最安値</th>-->
 			<th>詳細</th>
 		</tr>
-		
+		<tr th:each="accommodations : ${accommodations}">
+			<td th:text="${accommodations.id}"></td>
+			<td th:text="${accommodations.name}"></td>
+<!--			<td th:text="${accommodations.date}"></td>-->
+			<td th:text="${accommodations.address}"></td>
+<!--			<td th:text="${accommodations.languageId}"></td>-->
+<!--			<td th:text="${accommodations.price}"></td>-->
+			<td th:text="${accommodations.content}"></td>			
+		</tr>
 	</table>
-	
-	
 </body>
 </html>
