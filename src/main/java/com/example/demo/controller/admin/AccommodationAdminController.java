@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -100,4 +101,12 @@ public class AccommodationAdminController {
 
 		return "admin/adminReserve";
 	}
+
+	//予約を削除する
+	@PostMapping("/admin/{id}/delete")
+	public String deleteReserved(@PathVariable("id") Integer id) {
+		reserveRepository.deleteById(id);
+		return "redirect:/admin/reserve";
+	}
+
 }
