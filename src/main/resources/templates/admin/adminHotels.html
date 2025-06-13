@@ -5,6 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h1>ホテル一覧</h1>
 	<a href="/admin/accommodation">全ホテル</a>
 	<a th:each="cateogry:${categories}"
 		th:href="@{/admin/accommodation(categoryId=${category.id})}"

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Accommodation;
@@ -48,5 +49,11 @@ public class AccommodationAdminController {
 	@GetMapping("/admin/add")
 	public String create() {
 		return "admin/adminAddHotels";
+	}
+
+	//新規作成し、確認画面に遷移する
+	@PostMapping("/admin/check")
+	public String check() {
+		return "admin/adminConfirmHotels";
 	}
 }
