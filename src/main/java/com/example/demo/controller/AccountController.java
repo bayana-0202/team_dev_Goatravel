@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import jakarta.servlet.http.HttpSession;
@@ -52,6 +53,44 @@ public class AccountController {
 			account.setEmail(users.get(0).getEmail());
 			account.setBirthday(users.get(0).getBirthday());
 		}
-		return "redirect:/search";
+		return "redirect:/";
 	}
+
+	@GetMapping("/signup")
+	public String signupView() {
+		return "addAccount";
+	}
+
+	@PostMapping("/signup/confirm")
+	public String confirm(
+			@RequestParam("name") String name,
+			@RequestParam("nickname") String nickname,
+			@RequestParam("password") String password,
+			@RequestParam("checkPassword") String checkPassword,
+			@RequestParam("email") String email,
+			@RequestParam("checkEmail") String checkEmail,
+			@RequestParam("tel") String tel,
+			@RequestParam("gender") Integer gender,
+			@RequestParam("birthday") Date birthday,
+			@RequestParam("address") String address,
+			Model model) {
+
+		model.addAttribute("name", name);
+		model.addAttribute("nickname", nickname);
+		model.addAttribute("password", password);
+		model.addAttribute("checkPassword", checkPassword);
+		model.addAttribute("email", email);
+		model.addAttribute("checkEmail", checkEmail);
+		model.addAttribute("tel", tel);
+		model.addAttribute("gender", gender);
+		model.addAttribute("birthday", birthday);
+		model.addAttribute("address", address);
+		return "addAccount";
+	}
+
+	@PostMapping("/signup/complete")
+	public String complete(Model model) {
+		return "completeAccount";
+	}
+
 }
