@@ -1,5 +1,8 @@
 package com.example.demo.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -7,6 +10,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +26,17 @@ public class Accommodation {
 	private enum bathType {
 		//お風呂の種類
 		ユニットバス, 風呂トイレ別, シャワールーム
+	}
+
+	@OneToMany(mappedBy = "accommodation")
+	private List<Plan> plans = new ArrayList<>();
+
+	public List<Plan> getPlans() {
+		return plans;
+	}
+
+	public void setPlans(List<Plan> plans) {
+		this.plans = plans;
 	}
 
 	@Enumerated(EnumType.STRING)
