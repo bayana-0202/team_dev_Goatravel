@@ -20,7 +20,7 @@ public class Reserve {
 	@Column(name = "plan_id")
 	private Integer planId;
 	private Integer quantity;
-	@Column(name = "roomcount") //名前変更
+	@Column(name = "room_count")
 	private Integer roomCount;
 
 	@ManyToOne
