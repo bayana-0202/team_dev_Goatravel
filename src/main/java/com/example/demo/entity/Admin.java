@@ -28,12 +28,12 @@ public class Admin {
 
 	}
 
-	public Admin(Integer id, String name, String password, String email, String tel) {
+	public Admin(Integer id, String name, String email, String tel, String password) {
 		this.id = id;
 		this.name = name;
-		this.password = password;
 		this.email = email;
 		this.tel = tel;
+		this.password = password;
 	}
 
 	//ゲッターセッター

@@ -129,7 +129,7 @@ public class AccountAdminController {
 			model.addAttribute("errors", errors);
 			model.addAttribute("admin", admins);
 			model.addAttribute("accountAdmin", accountAdmin);
-			return "admin/adminEditAccount";
+			return "/admin/adminEditAccount";
 		}
 
 		String passwordMask = "●".repeat(password.length());
@@ -137,6 +137,7 @@ public class AccountAdminController {
 
 		Admin admin = adminRepository.findById(id).get();
 		admin.setName(name);
+		admin.setName(email);
 		admin.setTel(tel);
 		admin.setPassword(password);
 
