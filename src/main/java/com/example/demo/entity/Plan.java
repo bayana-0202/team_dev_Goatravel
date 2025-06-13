@@ -9,7 +9,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,6 +31,29 @@ public class Plan {
 	private Integer accommodationId;//宿泊施設のID
 
 	private LocalDate date;
+	@ManyToOne
+	@JoinColumn(name = "accommodation_id", insertable = false, updatable = false)
+	private Accommodation accommodation;
+
+	public Accommodation getAccommodation() {
+		return accommodation;
+	}
+
+	public RoomType getRoomType() {
+		return roomType;
+	}
+
+	public void setAccommodation(Accommodation accommodation) {
+		this.accommodation = accommodation;
+	}
+
+	public void setRoomType(RoomType roomType) {
+		this.roomType = roomType;
+	}
+
+	@OneToOne
+	@JoinColumn(name = "room_id", insertable = false, updatable = false)
+	private RoomType roomType;
 
 	@OneToMany(mappedBy = "plan")
 	private List<Reserve> reserves = new ArrayList<>();

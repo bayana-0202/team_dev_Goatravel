@@ -2,9 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>管理者のアカウント一覧</title>
 </head>
 <body>
-
+	<header th:replace="admin/adminHeader"></header>
+	
+	<main>
+		<table border="1">
+			<tr>
+				<th>管理者ID</th>
+				<th>管理者名</th>
+				<th>メールアドレス</th>
+				<th>電話番号</th>
+			</tr>
+			<tr th:each="admin:${accounts}">
+				<td th:text="${admin.id}"></td>
+				<td th:text="${admin.name}"></td>
+				<td th:text="${admin.email}"></td>
+				<td th:text="${admin.tel}"></td>
+			</tr>
+		</table>
+		<form action="/admin/accommodation" method="get">
+			<button>ホテル一覧画面に戻る</button>
+		</form>
+	</main>
 </body>
 </html>

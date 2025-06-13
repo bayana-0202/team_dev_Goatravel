@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Accommodation;
 import com.example.demo.entity.Category;
+import com.example.demo.entity.Reserve;
 import com.example.demo.repository.AccommodationRepository;
 import com.example.demo.repository.CategoryRepository;
+import com.example.demo.repository.ReserveRepository;
 
 @Controller
 public class AccommodationAdminController {
@@ -22,6 +24,9 @@ public class AccommodationAdminController {
 
 	@Autowired
 	AccommodationRepository accommodationRepository;
+
+	@Autowired
+	ReserveRepository reserveRepository;
 
 	//宿泊施設一覧表示
 	@GetMapping("/admin/accommodation")
@@ -53,7 +58,35 @@ public class AccommodationAdminController {
 
 	//新規作成し、確認画面に遷移する
 	@PostMapping("/admin/check")
-	public String check() {
+	public String check(
+			@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "categoryId", defaultValue = "") Integer categoryId,
+			@RequestParam(name = "address", defaultValue = "") String address,
+			@RequestParam(name = "tel", defaultValue = "") String tel,
+			@RequestParam(name = "languageId", defaultValue = "") Integer languageId,
+			@RequestParam(name = "content", defaultValue = "") String content,
+			Model model) {
+
+		Accommodation accommodation = new Accommodation(categoryId, name, tel, address, languageId,
+				content);
+		accommodationRepository.save(accommodation);
+
 		return "admin/adminConfirmHotels";
+	}
+
+	//確認画面からホテル一覧にリダイレクトする
+	@PostMapping("/admin/check/add")
+	public String add() {
+		return "redirect:/admin/accommodation";
+	}
+
+	//予約画面を一覧で表示する
+	@GetMapping("/admin/reserve")
+	public String booking(@RequestParam(name = "reserveId", defaultValue = "") Integer reserveId, Model model) {
+
+		List<Reserve> reserveList = reserveRepository.findAll();
+		model.addAttribute("reserves", reserveList);
+
+		return "admin/adminReserve";
 	}
 }

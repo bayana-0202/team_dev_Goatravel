@@ -1,10 +1,14 @@
 package com.example.demo.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,12 +21,19 @@ public class Accommodation {
 	@Column(name = "category_id")
 	private Integer categoryId;//宿カテゴリーID
 
-	//	private enum bathType {
-	//		//お風呂の種類
-	//		ユニットバス, 風呂トイレ別, シャワールーム
-	//	}
 	@Column(name = "bath_id")
 	private Integer bathId;
+
+	@OneToMany(mappedBy = "accommodation")
+	private List<Plan> plans = new ArrayList<>();
+
+	public List<Plan> getPlans() {
+		return plans;
+	}
+
+	public void setPlans(List<Plan> plans) {
+		this.plans = plans;
+	}
 
 	private String name;//宿泊施設の名前
 
@@ -35,16 +46,29 @@ public class Accommodation {
 
 	private String content;//サービス内容
 
-	//コンストラクタ
+	//デフォルトコンストラクタ
 	public Accommodation() {
 
 	}
 
+	//コンストラクタ(修正版)
 	public Accommodation(Integer categoryId, Integer bathId, String name, String tel, String address,
 			Integer languageId,
 			String content) {
 		this.categoryId = categoryId;
 		this.bathId = bathId;
+		this.name = name;
+		this.tel = tel;
+		this.address = address;
+		this.languageId = languageId;
+		this.content = content;
+	}
+
+	//こっち使っているなら上記のほうにしてこのコンストラクタを削除してね
+	public Accommodation(Integer categoryId, String name, String tel, String address,
+			Integer languageId,
+			String content) {
+		this.categoryId = categoryId;
 		this.name = name;
 		this.tel = tel;
 		this.address = address;
