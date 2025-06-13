@@ -74,6 +74,7 @@ public class AccountController {
 			@RequestParam(name = "birthday", defaultValue = "") LocalDate birthday,
 			@RequestParam(name = "address", defaultValue = "") String address,
 			Model model) {
+		System.out.println(name);
 		model.addAttribute("name", name);
 		model.addAttribute("nickname", nickname);
 		model.addAttribute("password", password);
