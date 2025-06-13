@@ -36,7 +36,6 @@ INSERT INTO accommodations(category_id, bath_id, name,tel,address,language_id,co
 INSERT INTO accommodations(category_id, bath_id, name,tel,address,language_id,content) VALUES(2,2,'ディズニーホテル','048-139-7468','千葉県浦安市',4,'FREE Wi-Fi、アメニティ');
 INSERT INTO accommodations(category_id, bath_id, name,tel,address,language_id,content) VALUES(3,1,'紅葉','0285-85-1657','栃木県那須塩原市',3,'アメニティ');
 INSERT INTO accommodations(category_id, bath_id, name,tel,address,language_id,content) VALUES(3,2,'桜館','073-458-9139','神奈川県箱根町',4,'FREE Wi-Fi、アメニティ');
-INSERT INTO accommodations(category_id, bath_id, name,tel,address,language_id,content) VALUES(1,2,'スペシャルホテル','042-543-8795','東京都品川区',2,'アメニティ');
 INSERT INTO accommodations(category_id, bath_id, name,tel,address,language_id,content) VALUES(3,3,'紫陽花','078-891-6725','青森県',1,'FREE Wi-Fi、アメニティ');
 
 --顧客向け提供プラン
