@@ -7,55 +7,58 @@
 </head>
 
 <body>
+	<header th:replace="admin/adminHeader"></header>
 	<h1>ホテル新規作成</h1>
 	<p th:each="error:${errors}" th:text="${error}" style="color: red;"></p>
+	<span style="color: red;">*</span>必須<br>
 	<form action="/admin/check" method="post">
 		<table border="1">
 			<tr>
-				<th>ホテル</th>
-				<td><input type="text" name="name" th:value="${name}"></td>
+				<th>ホテル<span style="color: red;">*</span></th>
+				<td><input type="text" name="name" th:value="${name}" placeholder="ホテル名"></td>
 			</tr>
 			<tr>
-				<th>カテゴリー</th>
+				<th>カテゴリー<span style="color: red;">*</span></th>
 				<td>
-					<input type="radio" name="categoryId" value="1" >ビジネス
-					<input type="radio" name="categoryId" value="2" >リゾート
-					<input type="radio" name="categoryId" value="3" >旅館
-					<input type="radio" name="categoryId" value="4" >その他
+					<input type="radio" name="categoryId" value="1" th:checked="${categoryId == 1}">ビジネス
+					<input type="radio" name="categoryId" value="2" th:checked="${categoryId == 2}">リゾート
+					<input type="radio" name="categoryId" value="3" th:checked="${categoryId == 3}">旅館
+					<input type="radio" name="categoryId" value="4" th:checked="${categoryId == 4}">その他
 				</td>
 			</tr>
 			<tr>
-				<th>住所</th>
-				<td><input type="text" name="address" th:value="${address}"></td>
+				<th>住所<span style="color: red;">*</span></th>
+				<td><input type="text" name="address" th:value="${address}" placeholder="住所"></td>
 			</tr>
 			<tr>
-				<th>電話番号</th>
-				<td><input type="text" name="tel" th:value="${tel}"></td>
+				<th>電話番号<span style="color: red;">*</span></th>
+				<td><input type="text" name="tel" th:value="${tel}" placeholder="電話番号"></td>
 			</tr>
 			<tr>
-				<th>対応言語</th>
+				<th>対応言語<span style="color: red;">*</span></th>
 				<td>
 					<select name="languageId" >
-						<option value="1">日本語</option>
-						<option value="2">日本語、英語</option>
-						<option value="3">日本語、中国語</option>
-						<option value="4">日本語、英語、中国語</option>
+						<option value="1" th:selected="${languageId == 1}">日本語</option>
+						<option value="2" th:selected="${languageId == 2}">日本語、英語</option>
+						<option value="3" th:selected="${languageId == 3}">日本語、中国語</option>
+						<option value="4" th:selected="${languageId == 4}">日本語、英語、中国語</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<th>風呂</th>
+				<th>風呂<span style="color: red;">*</span></th>
 				<td>
-					<input type="radio" name="bathId" value="1" >ユニットバス
-					<input type="radio" name="bathId" value="2" >風呂
-					<input type="radio" name="bathId" value="3" >大浴場
+					<input type="radio" name="bathId" value="1" th:checked="${bathId == 1}">ユニットバス
+					<input type="radio" name="bathId" value="2" th:checked="${bathId == 2}">風呂
+					<input type="radio" name="bathId" value="3" th:checked="${bathId == 3}">大浴場
 				</td>
 			</tr>
 			<tr>
 				<th>内容</th>
-				<td><input type="text" name="content" th:value="${content}"></td>
+				<td><input type="text" name="content" th:value="${content}" placeholder="備考欄"></td>
 			</tr>
 		</table>
+		
 		<button>作成</button>
 	</form>
 	<a href="/admin/accommodation">ホテル一覧へ戻る</a>

@@ -64,7 +64,8 @@ public class AccommodationAdminController {
 
 	//宿泊施設の新規登録画面表示
 	@GetMapping("/admin/add")
-	public String create() {
+	public String create(Model model) {
+		model.addAttribute("accountAdmin", accountAdmin);
 		return "admin/adminAddHotels";
 	}
 
@@ -90,6 +91,13 @@ public class AccommodationAdminController {
 		}
 		if (tel == null || tel.length() == 0) {
 			error.add("電話番号を入力してください");
+			//登録済みのチェックは後でやる
+		}
+		if (categoryId == null || categoryId == 0) {
+			error.add("カテゴリーを選択してください");
+		}
+		if (bathId == null || bathId == 0) {
+			error.add("風呂のタイプを選択してください");
 		}
 		if (error.size() != 0) {
 			model.addAttribute("errors", error);
@@ -100,6 +108,7 @@ public class AccommodationAdminController {
 			model.addAttribute("languageId", languageId);
 			model.addAttribute("bathId", bathId);
 			model.addAttribute("content", content);
+			model.addAttribute("accountAdmin", accountAdmin);
 			return "admin/adminAddHotels";
 		}
 
@@ -109,13 +118,15 @@ public class AccommodationAdminController {
 		accommodationRepository.save(accommodation);
 		model.addAttribute(accommodation);
 
+		model.addAttribute("accountAdmin", accountAdmin);
+
 		return "admin/adminConfirmHotels";
 	}
 
 	//確認画面からホテル一覧にリダイレクトする
 	@PostMapping("/admin/check/add")
 	public String add(Model model) {
-
+		model.addAttribute("accountAdmin", accountAdmin);
 		return "redirect:/admin/accommodation";
 	}
 
@@ -128,14 +139,15 @@ public class AccommodationAdminController {
 
 		List<User> userList = userRepository.findAll();
 		model.addAttribute("users", userList);
-
+		model.addAttribute("accountAdmin", accountAdmin);
 		return "admin/adminReserve";
 	}
 
 	//予約を削除する
 	@PostMapping("/admin/{id}/delete")
-	public String deleteReserved(@PathVariable("id") Integer id) {
+	public String deleteReserved(@PathVariable("id") Integer id, Model model) {
 		reserveRepository.deleteById(id);
+		model.addAttribute("accountAdmin", accountAdmin);
 		return "redirect:/admin/reserve";
 	}
 
