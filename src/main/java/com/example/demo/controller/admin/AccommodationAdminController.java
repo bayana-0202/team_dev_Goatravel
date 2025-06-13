@@ -106,6 +106,7 @@ public class AccommodationAdminController {
 	@PostMapping("/admin/{id}/delete")
 	public String deleteReserved(@PathVariable("id") Integer id) {
 		reserveRepository.deleteById(id);
-		return "redirect:/admin/accommodation";
+		return "redirect:/admin/reserve";
 	}
+
 }
