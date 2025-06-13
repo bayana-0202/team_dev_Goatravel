@@ -31,11 +31,18 @@
 				<td th:text="${accommodation.languageId}"></td>
 			</tr>
 			<tr>
+				<th>風呂</th>
+				<td th:text="${accommodation.bathId}"></td>
+			</tr>
+			<tr>
 				<th>内容</th>
 				<td th:text="${accommodation.content}"></td>
 			</tr>
 		</table>
 		<button>登録</button>
+	</form>
+	<form action="/admin/add" method="get">
+		<button>戻る</button>
 	</form>
 </body>
 
