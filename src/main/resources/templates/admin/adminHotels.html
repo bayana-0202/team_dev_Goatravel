@@ -5,6 +5,8 @@
 <title>ホテル一覧画面</title>
 </head>
 <body>
+	<header th:replace="admin/adminHeader"></header>
+
 	<h2>ホテル一覧</h2>
 	<a href="/admin/accommodation">全ホテル</a><br>
 	<a th:each="cateogry:${categories}"
