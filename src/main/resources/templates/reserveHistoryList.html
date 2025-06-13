@@ -13,10 +13,10 @@
 	<th>キャンセル</th>
 	</tr>
 	<tr th:each="reserve:${reserves}">
-	<td></td>
-	<td th:text=${reserve.plan.date}></td>
-	<td></td>
-	<td></td>
+	<td th:text="${reserve.plan.accommodation.name}"></td>
+	<td th:text="${reserve.plan.date}"></td>
+	<td th:text="${reserve.plan.roomType.name}"></td>
+	<td><button>キャンセル</button></td>
 	</tr>
 	</table>
 </body>
