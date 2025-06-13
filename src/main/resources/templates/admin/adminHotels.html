@@ -10,6 +10,7 @@
 	<a th:each="cateogry:${categories}"
 		th:href="@{/admin/accommodation(categoryId=${category.id})}"
 		th:text="${category.name}"></a>
+	<a href="/admin/account">管理者一覧</a>
 		
 	<table border="1">
 		<tr>
