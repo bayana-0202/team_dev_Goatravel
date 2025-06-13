@@ -72,7 +72,7 @@ public class AccountController {
 			@RequestParam(name = "email", defaultValue = "") String email,
 			@RequestParam(name = "checkEmail", defaultValue = "") String checkEmail,
 			@RequestParam(name = "tel", defaultValue = "") String tel,
-			@RequestParam(name = "gender", defaultValue = "") String gender,
+			@RequestParam(name = "gender", defaultValue = "") Integer gender,
 			@RequestParam(name = "birthday", defaultValue = "") LocalDate birthday,
 			@RequestParam(name = "address", defaultValue = "") String address,
 			Model model) {
@@ -132,6 +132,10 @@ public class AccountController {
 		model.addAttribute("gender", gender);
 		model.addAttribute("birthday", birthday);
 		model.addAttribute("address", address);
+
+		String passwordMask = "●".repeat(password.length());
+		model.addAttribute("passwordMask", passwordMask);
+
 		return "confirmAccount";
 	}
 
