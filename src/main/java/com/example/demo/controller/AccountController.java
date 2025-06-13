@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.servlet.http.HttpSession;
@@ -35,8 +35,8 @@ public class AccountController {
 
 	@PostMapping("/login")
 	public String login(
-			@RequestParam("email") String email,
-			@RequestParam("password") String password,
+			@RequestParam(name = "email", defaultValue = "") String email,
+			@RequestParam(name = "password", defaultValue = "") String password,
 			Model model) {
 		List<User> users = userRepository.findByEmailAndPassword(email, password);
 		if (users.size() == 0) {
@@ -63,18 +63,17 @@ public class AccountController {
 
 	@PostMapping("/signup/confirm")
 	public String confirm(
-			@RequestParam("name") String name,
-			@RequestParam("nickname") String nickname,
-			@RequestParam("password") String password,
-			@RequestParam("checkPassword") String checkPassword,
-			@RequestParam("email") String email,
-			@RequestParam("checkEmail") String checkEmail,
-			@RequestParam("tel") String tel,
-			@RequestParam("gender") Integer gender,
-			@RequestParam("birthday") Date birthday,
-			@RequestParam("address") String address,
+			@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "nickname", defaultValue = "") String nickname,
+			@RequestParam(name = "password", defaultValue = "") String password,
+			@RequestParam(name = "checkPassword", defaultValue = "") String checkPassword,
+			@RequestParam(name = "email", defaultValue = "") String email,
+			@RequestParam(name = "checkEmail", defaultValue = "") String checkEmail,
+			@RequestParam(name = "tel", defaultValue = "") String tel,
+			@RequestParam(name = "gender", defaultValue = "") Integer gender,
+			@RequestParam(name = "birthday", defaultValue = "") LocalDate birthday,
+			@RequestParam(name = "address", defaultValue = "") String address,
 			Model model) {
-
 		model.addAttribute("name", name);
 		model.addAttribute("nickname", nickname);
 		model.addAttribute("password", password);
@@ -85,11 +84,24 @@ public class AccountController {
 		model.addAttribute("gender", gender);
 		model.addAttribute("birthday", birthday);
 		model.addAttribute("address", address);
-		return "addAccount";
+		return "confirmAccount";
 	}
 
 	@PostMapping("/signup/complete")
-	public String complete(Model model) {
+	public String complete(
+			@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "tel", defaultValue = "") String tel,
+			@RequestParam(name = "address", defaultValue = "") String address,
+			@RequestParam(name = "password", defaultValue = "") String password,
+			@RequestParam(name = "gender", defaultValue = "") Integer gender,
+			@RequestParam(name = "nickname", defaultValue = "") String nickname,
+			@RequestParam(name = "email", defaultValue = "") String email,
+			@RequestParam(name = "birthday", defaultValue = "") LocalDate birthday,
+			Model model) {
+		User user = new User(name, tel, address, password, gender, nickname, email, birthday);
+		userRepository.save(user);
+		model.addAttribute("user", user);
+
 		return "completeAccount";
 	}
 
