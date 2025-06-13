@@ -27,6 +27,18 @@ public class Reserve {
 	@JoinColumn(name = "plan_id", insertable = false, updatable = false)
 	private Plan plan;
 
+	@ManyToOne
+	@JoinColumn(name = "user_id", insertable = false, updatable = false)
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setRoomCount(Integer roomCount) {
+		this.roomCount = roomCount;
+	}
+
 	public Plan getPlan() {
 		return plan;
 	}

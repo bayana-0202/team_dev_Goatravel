@@ -54,6 +54,10 @@ public class Accommodation {
 	@Column(name = "language_id")
 	private Integer languageId;//対応言語ID
 
+	@ManyToOne
+	@JoinColumn(name = "language_id", insertable = false, updatable = false)
+	private Language language;
+
 	private String content;//サービス内容
 
 	//デフォルトコンストラクタ
