@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>予約一覧 - Gotravel</title>
 </head>
 <style>
 	.popupWraper{
@@ -15,6 +15,9 @@
 		}
 </style>
 <body>
+	<th:block th:replace="~{header :: header_fragment(
+	title='予約一覧'
+	)}"></th:block>	
 	<main class="popupWraper">
 	<table>
 	<tr>
