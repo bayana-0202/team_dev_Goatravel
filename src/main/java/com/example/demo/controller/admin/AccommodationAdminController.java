@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.entity.Accommodation;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Reserve;
+import com.example.demo.entity.User;
 import com.example.demo.repository.AccommodationRepository;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.ReserveRepository;
+import com.example.demo.repository.UserRepository;
 
 @Controller
 public class AccommodationAdminController {
@@ -27,6 +29,9 @@ public class AccommodationAdminController {
 
 	@Autowired
 	ReserveRepository reserveRepository;
+
+	@Autowired
+	UserRepository userRepository;
 
 	//宿泊施設一覧表示
 	@GetMapping("/admin/accommodation")
@@ -86,6 +91,9 @@ public class AccommodationAdminController {
 
 		List<Reserve> reserveList = reserveRepository.findAll();
 		model.addAttribute("reserves", reserveList);
+
+		List<User> userList = userRepository.findAll();
+		model.addAttribute("users", userList);
 
 		return "admin/adminReserve";
 	}

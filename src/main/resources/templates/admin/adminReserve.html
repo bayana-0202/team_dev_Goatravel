@@ -9,10 +9,15 @@
 	<table border="1">
 		<tr>
 			<th>ID</th>
+			<td  th:each="reserve:${reserves}" th:text="${reserve.id}"></td>
 		</tr>
-		<tr th:each="reserve:${reserves}">
-			<td th:text="${reserve.id}"></td>
+		<tr >
+			<th>名前</th>
+			<td  th:each="user:${users}" th:text="${user.name}"></td>
 		</tr>
+<!--		<tr th:each="user:${users}">-->
+<!--			<td th:text="${user.name}"></td>-->
+<!--		</tr>-->
 	</table>
 </body>
 </html>
